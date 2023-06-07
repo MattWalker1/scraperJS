@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const puppeteer = require('puppeteer-extra');
 const pluginStealth = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(pluginStealth());
@@ -17,6 +19,12 @@ async function scrapeAddress(url){
 
     console.log({rawTxt}); 
 
+    //save data to JSON file
+    fs.writeFile('StockBuys.json', JSON.stringify(rawTxt), (err) => {
+        if (err) throw err;
+        console.log('File saved');
+    });
+    
     browser.close();
 
 }
