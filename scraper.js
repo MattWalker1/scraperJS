@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url,{waitUntil: 'networkidle0'});
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="grid"]');
-    const [el]= await page.$x('//*[@id="grid"]');
+    await page.waitForXPath('//*[@id="main"]');
+    const [el]= await page.$x('//*[@id="main"]');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -29,4 +29,4 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://www.dataroma.com/m/stock.php?sym=BABA');
+scrapeAddress('https://www.dataroma.com/m/stock.php?sym=GOOG');
