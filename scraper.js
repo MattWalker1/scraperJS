@@ -29,4 +29,4 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://www.dataroma.com/m/g/portfolio.php?o=c');
+scrapeAddress('https://www.dataroma.com/m/g/portfolio_b.php?q=q');
