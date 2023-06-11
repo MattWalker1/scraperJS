@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url,{waitUntil: 'networkidle0'});
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="grid"]');
-    const [el]= await page.$x('//*[@id="grid"]');
+    await page.waitForXPath('//*[@id="root"]/div[2]/div/div[5]');
+    const [el]= await page.$x('//*[@id="root"]/div[2]/div/div[5]');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -22,11 +22,11 @@ async function scrapeAddress(url){
     //save data to JSON file
     fs.writeFile('StockBuys.json', JSON.stringify(rawTxt), (err) => {
         if (err) throw err;
-        console.log('File saved');
+        console.log('File has been saved');
     });
     
     browser.close();
 
 }
 
-scrapeAddress('https://www.dataroma.com/m/g/portfolio_b.php?q=q');
+scrapeAddress('https://ironforge.pro/pvp/leaderboards/US/2/');
