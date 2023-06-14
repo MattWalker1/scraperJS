@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url,{waitUntil: 'networkidle0'});
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="root"]/div[2]/div/div[5]');
-    const [el]= await page.$x('//*[@id="root"]/div[2]/div/div[5]');
+    await page.waitForXPath(' ');
+    const [el]= await page.$x(' ');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -29,4 +29,4 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://ironforge.pro/pvp/leaderboards/US/2/');
+scrapeAddress(' ');
