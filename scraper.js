@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url,{waitUntil: 'networkidle0'});
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="Col1-1-Financials-Proxy"]/section');
-    const [el]= await page.$x('//*[@id="Col1-1-Financials-Proxy"]/section');
+    await page.waitForXPath('//*[@id="render-target-default"]/div/div[3]');
+    const [el]= await page.$x('//*[@id="render-target-default"]/div/div[3]');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -29,4 +29,5 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://ca.finance.yahoo.com/quote/BABA/financials?p=BABA');
+scrapeAddress('https://finance.yahoo.com/quote/GOOGL/financials/');
+
