@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url, { timeout: 60000 }); // Set timeout to 60 seconds
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="render-target-default"]/div/div[3]');
-    const [el]= await page.$x('//*[@id="render-target-default"]/div/div[3]');
+    await page.waitForXPath('/html/body/section[2]/div');
+    const [el]= await page.$x('/html/body/section[2]/div');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -29,5 +29,5 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://finance.yahoo.com/quote/GOOGL/financials/');
+scrapeAddress('https://hybridglobalinc.com/');
 
