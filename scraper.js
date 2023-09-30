@@ -11,8 +11,8 @@ async function scrapeAddress(url){
     await page.goto(url,{waitUntil: 'networkidle0'});
 
     //wait for xpath
-    await page.waitForXPath('//*[@id="render-target-default"]/div/div[3]');
-    const [el]= await page.$x('//*[@id="render-target-default"]/div/div[3]');
+    await page.waitForXPath('/html/body/section[2]/div');
+    const [el]= await page.$x('/html/body/section[2]/div');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -22,12 +22,12 @@ async function scrapeAddress(url){
     //save data to JSON file
     fs.writeFile('StockBuys.json', JSON.stringify(rawTxt), (err) => {
         if (err) throw err;
-        console.log('File has been saved');
+        console.log('Data has been saved inside StockBuys.json');
     });
     
     browser.close();
 
 }
 
-scrapeAddress('https://finance.yahoo.com/quote/GOOGL/financials/');
+scrapeAddress('https://hybridglobalinc.com/');
 
