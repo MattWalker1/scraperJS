@@ -8,11 +8,11 @@ async function scrapeAddress(url){
     const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
-    await page.goto(url,{waitUntil: 'networkidle0'});
+    await page.goto(url, { timeout: 60000 }); // Set timeout to 60 seconds
 
     //wait for xpath
-    await page.waitForXPath('/html/body/section[2]/div');
-    const [el]= await page.$x('/html/body/section[2]/div');
+    await page.waitForXPath('//*[@id="render-target-default"]/div/div[3]');
+    const [el]= await page.$x('//*[@id="render-target-default"]/div/div[3]');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
@@ -24,10 +24,10 @@ async function scrapeAddress(url){
         if (err) throw err;
         console.log('Data has been saved inside StockBuys.json');
     });
-    
+
     browser.close();
 
 }
 
-scrapeAddress('https://hybridglobalinc.com/');
+scrapeAddress('https://finance.yahoo.com/quote/GOOGL/financials/');
 
