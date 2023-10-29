@@ -11,15 +11,15 @@ async function scrapeAddress(url){
     await page.goto(url, { timeout: 60000 }); // Set timeout to 60 seconds
 
     //wait for xpath
-    await page.waitForXPath('/html/body/pre');
-    const [el]= await page.$x('/html/body/pre');
+    await page.waitForXPath('/html/body/div[2]/div/table/tbody/tr/td/div[2]');
+    const [el]= await page.$x('/html/body/div[2]/div/table/tbody/tr/td/div[2]');
     // console.log(el)
     const txt = await el.getProperty('textContent');
     const rawTxt = await txt.jsonValue(); 
 
     console.log({rawTxt}); 
 
-    //save data to JSON file
+    //save data to 'StockBuys.json' file
     fs.writeFile('StockBuys.json', JSON.stringify(rawTxt), (err) => {
         if (err) throw err;
         console.log('Data has been saved inside StockBuys.json');
@@ -29,5 +29,5 @@ async function scrapeAddress(url){
 
 }
 
-scrapeAddress('https://www.cftc.gov/dea/futures/nat_gas_lf.htm');
+scrapeAddress('https://finviz.com/');
 
